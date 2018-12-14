@@ -25,21 +25,21 @@ def decorator_with_args(func, return_original=False):
 
     >>> @decorator_with_args
     ... def register_plugin(plugin, arg1=1):
-    ...     print('Registering', plugin.__name__, 'with arg1=', arg1)
+    ...     print('Registering '+plugin.__name__+' with arg1='+str(arg1))
     ...     return plugin  # note register_plugin is an ordinary decorator
     >>> @register_plugin(arg1=10)
     ... def plugin1(): pass
-    Registering plugin1 with arg1= 10
+    Registering plugin1 with arg1=10
 
     >>> @decorator_with_args(return_original=True)
     ... def register_plugin_xx(plugin, arg1=1):
-    ...     print('Registering', plugin.__name__, 'with arg1=', arg1)
+    ...     print('Registering '+plugin.__name__+' with arg1='+str(arg1))
     ...     # Note register_plugin_xxx does not return plugin, so it cannot
     ...     # be used as a decorator directly before applying
     ...     # decorator_with_args. 
     >>> @register_plugin_xx(arg1=10)
     ... def plugin1(): pass
-    Registering plugin1 with arg1= 10
+    Registering plugin1 with arg1=10
     >>> plugin1()
     """
     @functools.wraps(func)
