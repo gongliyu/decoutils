@@ -3,3 +3,6 @@ include LICENSE
 
 # readme file
 include README.md
+
+include setup.py
+include MANIFEST.in
