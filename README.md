@@ -41,13 +41,13 @@ arguments. The *decoutils.decorator_with_arguments* is intend to abstract that w
 ### Install from PyPI
 
 ``` shell
-pip install compfile
+pip install decoutils
 ```
 
 ### Install from Anaconda
 
 ``` shell
-conda install -c liyugong compfile
+conda install -c liyugong decoutils
 ```
 
 ## Simple example
