@@ -1,5 +1,9 @@
 *decoutils*: Utilities for writing decorators
 
+[![Build Status](https://travis-ci.com/gongliyu/decoutils.svg?branch=master)](https://travis-ci.com/gongliyu/decoutils)
+[![Documentation Status](https://readthedocs.org/projects/decoutils/badge/?version=latest)](https://decoutils.readthedocs.io/en/latest/?badge=latest)
+[![Coverage Status](https://coveralls.io/repos/github/gongliyu/decoutils/badge.svg)](https://coveralls.io/github/gongliyu/decoutils)
+
 ## Rationale
 
 Python *decorator*s are very useful. However, writing decorators with
