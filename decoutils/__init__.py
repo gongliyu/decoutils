@@ -73,7 +73,8 @@ def decorator_with_args(func, return_original=False, target_pos=0):
         def wrapped_with_args(target):
             kwargs2 = dict()
             kwargs2[target_name] = target
-            res = func(*args,  **kwargs2, **kwargs)
+            kwargs2.update(kwargs)
+            res = func(*args,  **kwargs2)
             return target if return_original else res
         return wrapped_with_args
 

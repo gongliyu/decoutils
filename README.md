@@ -33,7 +33,7 @@ def plugin2(): pass
 In order to accomplish this goal, we need to wrap the function
 *register_plugin* so that it return a decorated plugin if the first
 input is a callable object, otherwise return a decorator with
-arguments. The *decoutils.decorator_with_arguments* is intend to abstract that wrapping, so that we can reuse it.
+arguments. The *decoutils.decorator_with_args* is intend to abstract that wrapping, so that we can reuse it.
 
 
 ## Installation
@@ -51,9 +51,9 @@ conda install -c liyugong decoutils
 ```
 
 ## Simple example
-Basically, *decorator_with_arguments* enables a ordinary decorator function to be a decorator with arguments.
+Basically, *decorator_with_args* enables a ordinary decorator function to be a decorator with arguments.
 ``` python
-@decorator_with_arguments
+@decorator_with_args
 def register_plugin(plugin, arg1=1):
     print('registering ', plugin.__name__, ' with arg1=', arg1)
     return plugin
@@ -62,9 +62,9 @@ def register_plugin(plugin, arg1=1):
 def plugin1(): pass
 ```
 
-Moreover, *decorator_with_arguments* itself is also a decorator with arguments: one argument *return_original* which can be used to convert a non-decorator function to be a decorator
+Moreover, *decorator_with_args* itself is also a decorator with arguments: one argument *return_original* which can be used to convert a non-decorator function to be a decorator
 ``` python
-@decorator_with_arguments
+@decorator_with_args
 def register_plugin(plugin, arg1=1):
     print('registering ', plugin.__name__, ' with arg1=', arg1)
     # Note here the function does not return the plugin, so it cannot work as a decorator originally
@@ -72,9 +72,25 @@ def register_plugin(plugin, arg1=1):
 @register_plugin(arg1=10)
 def plugin1(): pass
 ```
+
+*decorator_with_args* can also convert a function to decorator whose decorating target is not its first argument, e.g.
+
+``` python
+decorator_with_args(target_pos=1)
+def register_plugin(arg1, plugin):
+    return plugin
+    
+@register_plugin(100) # plugin2 will be registered with arg1=100
+def plugin2(): pass
+```
+
 *return_original* control whether the resultant decorator return the original plugin, or the result of function *register_plugin*.
 
 
 ## License
 
-The *compfile* package is released under the [MIT License](LICENSE)
+The *decoutils* package is released under the [MIT License](LICENSE)
+
+## Documentation
+
+https://decoutils.readthedocs.io
