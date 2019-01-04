@@ -4,6 +4,7 @@ __version__ = '0.0.3'
 
 import functools
 import inspect
+import sys
 
 def decorator_with_args(func, return_original=False, target_pos=0):
     """Enable a function to work with a decorator with arguments
@@ -57,7 +58,10 @@ def decorator_with_args(func, return_original=False, target_pos=0):
     ... def plugin2(): pass
     Registering plugin2 with arg1=100
     """
-    target_name = inspect.getfullargspec(func).args[target_pos]
+    if sys.version_info[0] >= 3:
+        target_name = inspect.getfullargspec(func).args[target_pos]
+    else:
+        target_name = inspect.getargspec(func).args[target_pos]
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         if  len(args) > target_pos:
